@@ -67,7 +67,7 @@ def pensar(no):
         print(no)   
     else:
         pergunta = no["pergunta"]
-        resposta = input(pergunta + " (sim/nao): ")
+        resposta = input(pergunta + " (sim ou não:) ")
         if resposta == "sim":
             pensar(no["sim"])
         else:
