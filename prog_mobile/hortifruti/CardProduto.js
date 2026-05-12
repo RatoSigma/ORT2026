@@ -4,7 +4,7 @@ export default function CardProduto({ produto }) {
   return (
     <View style={styles.card}>
       <Image 
-        source={{ uri: produto.imagem || 'https://via.placeholder.com/150' }} 
+        source={{ uri: produto.imagem || '' }} 
         style={styles.imagem} 
       />
       <View style={styles.info}>
