@@ -32,8 +32,7 @@ bool dfs(int x, int y) {
 
 int main() {
     ios_base::sync_with_stdio(false);
-
-    cin.tie(NULL);
+    cin.tie(nullptr);
     
     if (!(cin >> N >> M)) {
         return 0;
