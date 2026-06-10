@@ -1,1 +1,1 @@
-python aqui
+print('wallahi')

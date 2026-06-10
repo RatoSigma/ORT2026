@@ -39,7 +39,7 @@ int bfs(int inicio_i, int inicio_j) {
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(nullptr);
 
     if (!(cin >> altura >> largura)) return 0;
 
