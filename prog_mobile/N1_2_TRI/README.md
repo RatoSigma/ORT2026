@@ -1,15 +1,20 @@
 # N1 2º TRI de Prog. Mobile | Gerenciamento de Estoque
 ## Aplicativo mobile feito em React Native/Expo para cadastro, listagem e remoção de itens de estoque.
 
-## Como rodar o app:
+### Como rodar o app:
 
 Primeiro baixe o app do Expo Go no celular.
 Depois rode estes comandos em um terminal aberto na pasta do projeto:
 
 npm install
+
 npx expo start 
 
 Após rodar o 2º, aparecerá um QR Code. Leia o QR Code no app Expo Go e é isso.
+
+
+### Perguntas:
+
 
 1. O que é o useEffect e qual o seu papel no ciclo de vida de um componente?
 
