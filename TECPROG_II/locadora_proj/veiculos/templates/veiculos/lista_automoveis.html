@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Automoveis</title>
+</head>
+<body>
+    <h1>Lista de Automoveis</h1>
+
+    <p><a href="{% url 'veiculos:adicionar_automovel' %}">Adicionar novo automovel</a></p>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for automovel in automoveis %}
+            <tr>
+                <td>{{ automovel.placa }}</td>
+                <td>{{ automovel.marca }}</td>
+                <td>{{ automovel.modelo }}</td>
+                <td>{{ automovel.ano }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum automovel cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

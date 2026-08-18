@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Automovel</title>
+</head>
+<body>
+    <h1>Adicionar Automovel</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+
+    <p><a href="{% url 'veiculos:lista_automoveis' %}">Voltar para a lista</a></p>
+</body>
+</html>
