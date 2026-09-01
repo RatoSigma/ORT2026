@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de contatos</title>
+</head>
+<body>
+  <h1>Meus contatos</h1>
+  <a href="{% url 'agenda:home'%}">Voltar ao menu</a>
+
+  {% if contatos %}
+    <ul>
+      {% for contato in contatos %}
+        <li>
+            <a href="{% url 'agenda:contato_detalhe' contato.pk %}">
+                <strong>{{ contato.nome }}</strong>
+            </a> - {{ contato.telefone }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nenhum contato cadastrado.</p>
+  {% endif %}
+</body>
+</html>

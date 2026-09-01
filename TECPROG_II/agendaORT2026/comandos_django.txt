@@ -1,0 +1,23 @@
+[instalação do django]
+pip install django
+
+[Criando o projeto django]
+django-admin startproject meu_site .
+
+[Criando um APP django]
+python manage.py startapp agenda
+
+[Executando o servidor django]
+python manage.py runserver
+
+[Fazendos as migrações]
+python manage.py makemigrations agenda
+
+[Executando as migrações]
+python manage.py migrate
+
+[Criando superuser no admin]
+python manage.py createsuperuser
+
+[Resetando a senha do usuario]
+python manage.py changepassword your_superuser_username

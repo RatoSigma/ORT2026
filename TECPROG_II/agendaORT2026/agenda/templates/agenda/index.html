@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Principal</title>
+</head>
+<body>
+    <h1>Agenda de contatos ORT 2026</h1>
+    <p>O que você deseja fazer?</p>
+
+    <ul>
+        <li><a href="{% url 'agenda:contato_lista' %}">Visualizar Contatos</a></li>
+        <li><a href="{% url 'agenda:contato_criar' %}">Adicionar Contato</a></li>
+    </ul>
+</body>
+</html>
