@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Bolos</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <h1>Catálogo de Bolos</h1>
+    <a href="{% url 'catalogo:bolo_criar' %}">Adicionar Novo Bolo</a>
+    <ul>
+        {% for bolo in bolos %}
+            <li>
+                <a href="{% url 'catalogo:bolo_detalhe' bolo.pk %}">
+                    <strong>{{ bolo.nome }}</strong>
+                </a> - R$ {{ bolo.preco }}
+            </li>
+        {% empty %}
+            <li>Nenhum bolo cadastrado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
