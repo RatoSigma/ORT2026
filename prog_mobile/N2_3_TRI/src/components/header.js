@@ -1,26 +1,27 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function AppHeader({ theme, title, subtitle }) {
+export default function AppHeader({ theme }) {
   return (
-    <View style={styles.container}>
-      <Text style={[styles.name, { color: theme.primary }]}>Resenha Store</Text>
-      <Text style={[styles.title, { color: theme.textPrimary }]}>{title}</Text>
-      <Text style={{ color: theme.textSecondary }}>{subtitle}</Text>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: theme.surface, borderBottomColor: theme.border },
+      ]}
+    >
+      <Text style={[styles.title, { color: theme.textPrimary }]}>Resenha Store</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    gap: 6,
-    marginBottom: 20,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    minHeight: 56,
+    justifyContent: 'center',
+    paddingHorizontal: 18,
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontWeight: '700',
   },
 });

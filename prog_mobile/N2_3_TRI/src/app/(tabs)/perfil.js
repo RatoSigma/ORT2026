@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import AppHeader from '../../components/header';
 import WishlistItem from '../../components/wishlist';
 import { useAppContext } from '../../context/AppContext';
 
@@ -28,7 +27,7 @@ export default function PerfilScreen() {
 
   if (carregando) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
         <ActivityIndicator />
       </SafeAreaView>
     );
@@ -98,7 +97,7 @@ function PerfilConteudo({
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
       <FlatList
         data={wishlistJogos}
         keyExtractor={(item) => item.id}
@@ -113,17 +112,19 @@ function PerfilConteudo({
           />
         )}
         ListHeaderComponent={
-          <View
-            style={[
-              styles.header,
-              { backgroundColor: theme.surface, borderColor: theme.border },
-            ]}
-          >
-            <AppHeader
-              theme={theme}
-              title="Meu Perfil"
-              subtitle="Salve suas preferências e acompanhe sua wishlist."
-            />
+          <>
+            <View
+              style={[
+                styles.header,
+                { backgroundColor: theme.surface, borderColor: theme.border },
+              ]}
+            >
+            <View style={styles.pageHeading}>
+              <Text style={[styles.pageTitle, { color: theme.textPrimary }]}>Meu Perfil</Text>
+              <Text style={{ color: theme.textSecondary }}>
+                Salve suas preferências e acompanhe sua wishlist.
+              </Text>
+            </View>
             {erroCarregamento ? (
               <Text style={{ color: theme.danger }}>{erroCarregamento}</Text>
             ) : null}
@@ -167,8 +168,9 @@ function PerfilConteudo({
                 {mensagem}
               </Text>
             ) : null}
+            </View>
             <Text style={[styles.sectionTitle, { color: theme.primary }]}>Minha Wishlist</Text>
-          </View>
+          </>
         }
         ListEmptyComponent={
           <View style={styles.emptyState}>
@@ -197,6 +199,13 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     borderWidth: 1,
+  },
+  pageHeading: {
+    gap: 4,
+  },
+  pageTitle: {
+    fontSize: 20,
+    fontWeight: '700',
   },
   sectionTitle: {
     fontSize: 18,

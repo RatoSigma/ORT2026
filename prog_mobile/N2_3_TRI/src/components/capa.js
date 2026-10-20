@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
-export default function CapaJogo({ jogo, theme, style }) {
+export default function CapaJogo({ jogo, theme, style, resizeMode = 'contain' }) {
   const [proporcao, setProporcao] = useState(0.7);
   const [erro, setErro] = useState(false);
 
@@ -42,7 +42,7 @@ export default function CapaJogo({ jogo, theme, style }) {
     <Image
       accessibilityLabel={`Capa de ${jogo.titulo}`}
       source={{ uri: jogo.imagemCapa }}
-      resizeMode="contain"
+      resizeMode={resizeMode}
       onError={() => setErro(true)}
       style={[styles.imagem, style, { aspectRatio: proporcao }]}
     />

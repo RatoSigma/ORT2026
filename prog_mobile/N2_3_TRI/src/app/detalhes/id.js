@@ -25,7 +25,7 @@ export default function DetalhesScreen() {
 
   if (carregando) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
         <ActivityIndicator />
       </SafeAreaView>
     );
@@ -33,7 +33,7 @@ export default function DetalhesScreen() {
 
   if (!jogo) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
         <Text style={{ color: theme.textPrimary }}>Jogo não encontrado.</Text>
         <Pressable onPress={() => router.back()}>
           <Text style={{ color: theme.textPrimary }}>Voltar</Text>
@@ -56,7 +56,7 @@ export default function DetalhesScreen() {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
       <ScrollView>
       <View style={styles.content}>
         <Pressable onPress={() => router.back()} style={styles.backButton}>

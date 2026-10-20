@@ -1,7 +1,6 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import AppHeader from '../../components/header';
 import CardJogo from '../../components/card';
 import JogoDestaque from '../../components/destaque';
 import { useAppContext } from '../../context/AppContext';
@@ -13,22 +12,23 @@ export default function HomeScreen() {
     jogoDestaque,
     outrosJogos,
     isFavorito,
-    perfil,
     theme,
   } = useAppContext();
 
   if (carregando) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
         <ActivityIndicator size="large" color={theme.primary} />
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={[styles.container, { backgroundColor: theme.background }]}>
       <FlatList
         data={outrosJogos}
+        numColumns={2}
+        columnWrapperStyle={styles.row}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <CardJogo
@@ -40,22 +40,12 @@ export default function HomeScreen() {
         )}
         contentContainerStyle={styles.list}
         ListHeaderComponent={
-          <View
-            style={[
-              styles.header,
-              { backgroundColor: theme.background },
-            ]}
-          >
-            <AppHeader
-              theme={theme}
-              title="Catálogo"
-              subtitle={`Olá, ${perfil.nickname}. Escolha seu próximo jogo.`}
-            />
-
+          <View style={styles.header}>
             {erroCarregamento ? (
-              <Text style={{ color: theme.danger }}>{erroCarregamento}</Text>
+              <Text style={[styles.error, { color: theme.danger }]}>{erroCarregamento}</Text>
             ) : null}
 
+            <Text style={[styles.sectionTitle, { color: theme.textPrimary }]}>Em Destaque</Text>
             <JogoDestaque
               jogo={jogoDestaque}
               theme={theme}
@@ -64,8 +54,7 @@ export default function HomeScreen() {
                 router.push({ pathname: '/detalhes/id', params: { id: jogoDestaque.id } })
               }
             />
-
-            <Text style={[styles.sectionTitle, { color: theme.primary }]}>Mais jogos</Text>
+            <Text style={[styles.sectionTitle, { color: theme.textPrimary }]}>Todos os Jogos</Text>
           </View>
         }
       />
@@ -81,12 +70,19 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 24,
   },
+  row: {
+    justifyContent: 'center',
+    gap: 12,
+  },
   header: {
-    marginBottom: 8,
+    marginBottom: 2,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: '700',
     marginBottom: 8,
+  },
+  error: {
+    marginBottom: 10,
   },
 });
