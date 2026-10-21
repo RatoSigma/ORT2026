@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>O Mago - Catálogo de Jogos</title>
+
+    <link rel="stylesheet" href="{% static 'Davy_jones_o_mago/styles.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>O mago do GTA VI</h1>
+        <p>Encontre seu próximo jogo favorito!</p>
+    </header>
+
+    <main>
+
+        {% if jogo_destaque %}
+            <h2>Jogo em destaque</h2>
+
+            <section class="destaque">
+
+                <a href="{% url 'jogos:detalhes_jogo' jogo_destaque.pk %}">
+                    {% if jogo_destaque.foto_capa %}
+                        <img
+                            src="{{ jogo_destaque.foto_capa.url }}"
+                            alt="Capa de {{ jogo_destaque.nome }}"
+                        >
+                    {% else %}
+                        <p>Capa indisponível</p>
+                    {% endif %}
+                </a>
+
+                <div>
+                    <h2>{{ jogo_destaque.nome }}</h2>
+
+                    <p>
+                        <strong>Gênero:</strong>
+                        {{ jogo_destaque.genero.nome }}
+                    </p>
+
+                    <p>
+                        <strong>Plataformas:</strong>
+                        {% for plataforma in jogo_destaque.plataformas.all %}
+                            {{ plataforma.nome }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            Não informado
+                        {% endfor %}
+                    </p>
+
+                    <p class="preco">
+                        R$ {{ jogo_destaque.preco }}
+                    </p>
+
+                    <a
+                        class="botao"
+                        href="{% url 'jogos:detalhes_jogo' jogo_destaque.pk %}"
+                    >
+                        Ver detalhes
+                    </a>
+                </div>
+
+            </section>
+        {% endif %}
+
+
+        <h2>Catálogo de jogos</h2>
+
+        <section class="grade">
+
+            {% for jogo in jogos %}
+                <article class="card">
+
+                    <a href="{% url 'jogos:detalhes_jogo' jogo.pk %}">
+                        {% if jogo.foto_capa %}
+                            <img
+                                src="{{ jogo.foto_capa.url }}"
+                                alt="Capa de {{ jogo.nome }}"
+                            >
+                        {% else %}
+                            <p>Capa indisponível</p>
+                        {% endif %}
+                    </a>
+
+                    <h3>{{ jogo.nome }}</h3>
+
+                    <p class="preco">
+                        R$ {{ jogo.preco }}
+                    </p>
+
+                    <a
+                        class="botao"
+                        href="{% url 'jogos:detalhes_jogo' jogo.pk %}"
+                    >
+                        Ver detalhes
+                    </a>
+
+                </article>
+
+            {% empty %}
+                <p>Nenhum jogo cadastrado ainda.</p>
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Jogo</title>
+</head>
+<body>
+    <h1>Excluir jogo</h1>
+
+    <p>Você realmente quer deletar o jogo {{ jogo.nome }}?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sim, excluir</button>
+    </form>
+
+    <a href="{% url 'jogos:dashboard' %}">Cancelar</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tela exclusiva para Funcionário</title>
+    <link rel="stylesheet" href="{% static 'Davy_jones_o_mago/css/estilo.css' %}">
+</head>
+<body>
+    <main>
+        <h1>Tela do Funcionário</h1>
+
+        <p><a href="{% url 'jogos:pagina_inicial' %}">Ver o Catálogo</a></p>
+
+        <p>
+            <a class="botao" href="{% url 'jogos:novo_jogo' %}">Adicionar jogo</a>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Destaque</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for jogo in jogos %}
+                    <tr>
+                        <td>{{ jogo.nome }}</td>
+                        <td>R$ {{ jogo.preco }}</td>
+                        <td>{{ jogo.destaque|yesno:"Sim,Não" }}</td>
+                        <td>
+                            <a href="{% url 'jogos:editar_jogo' jogo.pk %}">Editar</a>
+                            |
+                            <a href="{% url 'jogos:apagar_jogo' jogo.pk %}">Apagar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">Nenhum jogo cadastrado.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

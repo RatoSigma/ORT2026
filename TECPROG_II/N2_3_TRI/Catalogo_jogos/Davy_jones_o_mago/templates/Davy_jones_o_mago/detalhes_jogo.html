@@ -1,0 +1,52 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ jogo.nome }}</title>
+    <link rel="stylesheet" href="{% static 'Davy_jones_o_mago/styles.css' %}">
+</head>
+<body>
+
+    <main class="detalhes">
+        <a href="{% url 'jogos:pagina_inicial' %}">Voltar para o catalogo de jogos</a>
+
+        <h1>{{ jogo.nome }}</h1>
+
+        <img class="capa-detalhe"
+             src="{{ jogo.foto_capa.url }}"
+             alt="{{ jogo.nome }}">
+
+        <p><strong>Preço:</strong> R$ {{ jogo.preco }}</p>
+        <p>
+            <strong>Lançamento:</strong>
+            {{ jogo.data_lancamento|date:"d/m/Y" }}
+        </p>
+        <p><strong>Gênero:</strong> {{ jogo.genero.nome }}</p>
+        <p><strong>Descrição:</strong> {{ jogo.descricao }}</p>
+
+        <p><strong>Plataformas:</strong>
+            {% for plataforma in jogo.plataformas.all %}
+                {{ plataforma.nome }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                Nenhuma plataforma cadastrada.
+            {% endfor %}
+        </p>
+
+        <h2>Avaliações</h2>
+
+        {% for avaliacao in jogo.avaliacoes.all %}
+            <article class="avaliacao">
+                <h3>{{ avaliacao.nome_visitante }}</h3>
+                <p>Nota: {{ avaliacao.nota }}/5</p>
+                <p>{{ avaliacao.comentario }}</p>
+            </article>
+        {% empty %}
+            <p>Este jogo ainda não recebeu avaliações.</p>
+        {% endfor %}
+    </main>
+
+</body>
+</html>
