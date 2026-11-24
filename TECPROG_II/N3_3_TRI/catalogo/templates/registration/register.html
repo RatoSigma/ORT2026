@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Criar Nova Conta</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+
+        <br>
+        <a href="{% url 'login' %}">Já tem conta? Voltar para o Login</a>
+    </div>
+</body>

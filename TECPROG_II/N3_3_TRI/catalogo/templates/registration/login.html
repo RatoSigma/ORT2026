@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrar</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Área do Funcionário</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        <br>
+        <a href="{% url 'register' %}">Não tem conta? Cadastre-se</a>
+        <br>
+        <a href="{% url 'catalogo:lista_bolos' %}">Voltar para a vitrine</a>
+    </div>
+</body>
+</html>

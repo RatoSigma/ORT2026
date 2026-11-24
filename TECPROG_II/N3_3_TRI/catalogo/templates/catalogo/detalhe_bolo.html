@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ bolo.nome }}</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ bolo.nome }}</h1>
+
+        <!-- EXIBINDO A FOTO -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            {% if bolo.foto %}
+                <img src="{{ bolo.foto.url }}" alt="Foto de {{ bolo.nome }}" style="max-width: 300px; border-radius: 10px;">
+            {% else %}
+                <p><i>Imagem não disponível para este bolo.</i></p>
+            {% endif %}
+        </div>
+
+        <p><strong>Sabor:</strong> {{ bolo.sabor }}</p>
+        <p><strong>Preço:</strong> R$ {{ bolo.preco }}</p>
+        <p><strong>Status:</strong>
+            {% if bolo.disponivel %} ✅ Disponível {% else %} ❌ Indisponível {% endif %}
+        </p>
+        <p><strong>Descrição:</strong> {{ bolo.descricao|default:"Sem descrição adicional." }}</p>
+
+        <br>
+        <div class="actions">
+            {% if user.is_authenticated %}
+                <a href="{% url 'catalogo:editar_bolo' bolo.pk %}" class="btn">Editar</a>
+                <a href="{% url 'catalogo:apagar_bolo' bolo.pk %}" class="btn-danger">Apagar</a>
+            {% endif %}
+
+            <a href="{% url 'catalogo:lista_bolos' %}" class="btn">Voltar</a>
+        </div>
+    </div>
+</body>
+</html>
